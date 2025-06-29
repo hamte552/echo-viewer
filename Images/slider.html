@@ -64,7 +64,7 @@
 
     const isVideo = videoNumbers.includes(index);
     const ext = isVideo ? "MP4" : "JPG";
-    const fileName = `ABIY_SISAY_02-11-2025_${index}.${ext}`;
+    const fileName = `./ABIY_SISAY_02-11-2025_${index}.${ext}`;  // <-- Changed here
 
     if (isVideo) {
       const video = document.createElement("video");
@@ -74,7 +74,6 @@
       video.muted = true;
       video.playsInline = true;
 
-      // Autoplay safely after metadata loads
       video.addEventListener('loadedmetadata', () => {
         video.play().catch(e => {
           console.warn("Autoplay prevented:", e);
@@ -108,8 +107,3 @@
 </body>
 </html>
 
-  loadMedia(current);
-</script>
-
-</body>
-</html>
