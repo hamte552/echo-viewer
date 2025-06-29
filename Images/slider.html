@@ -53,6 +53,7 @@
 
 <script>
   const totalFiles = 102;
+  // Your video indexes (no changes)
   const videoNumbers = [3,7,24,70,46,55,4,65,27,75,71,54,16,39,32,60,8,25,6,9,
                         61,41,68,23,26,30,58,73,22,36,72,52,10,5,40,50,69,
                         44,67,33,11,29,76,62,66];
@@ -63,10 +64,8 @@
     container.innerHTML = "";
 
     const isVideo = videoNumbers.includes(index);
-    const ext = isVideo ? "mp4" : "jpg";  // Use lowercase extensions here
+    const ext = isVideo ? "MP4" : "JPG"; // MUST match your file extensions EXACTLY (uppercase)
     const fileName = `ABIY_SISAY_02-11-2025_${index}.${ext}`;
-
-    console.log("Loading file:", fileName);
 
     if (isVideo) {
       const video = document.createElement("video");
@@ -87,11 +86,6 @@
       const img = document.createElement("img");
       img.src = fileName;
       img.alt = `Image ${index}`;
-
-      img.onerror = () => {
-        console.error("Image failed to load:", fileName);
-      };
-
       container.appendChild(img);
     }
 
@@ -110,6 +104,9 @@
 
   loadMedia(current);
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
