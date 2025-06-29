@@ -63,9 +63,8 @@
     container.innerHTML = "";
 
     const isVideo = videoNumbers.includes(index);
-    const ext = isVideo ? "MP4" : "jpg";  // lowercase jpg for images
+    const ext = isVideo ? "mp4" : "jpg";  // lowercase mp4 extension
 
-    // Both images and videos are in the same folder
     const fileName = `ABIY_SISAY_02-11-2025_${index}.${ext}`;
 
     console.log("Loading file:", fileName);
