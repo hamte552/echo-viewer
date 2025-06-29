@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ABIY_SISAY_02-11-2025 Viewer (Safe Autoplay Loop)</title>
+  <title>ABIY_SISAY_02-11-2025 Viewer</title>
   <style>
     body {
       background: #111;
@@ -63,8 +63,10 @@
     container.innerHTML = "";
 
     const isVideo = videoNumbers.includes(index);
-    const ext = isVideo ? "MP4" : "JPG";  // uppercase to match your files
-    const fileName = `ABIY_SISAY_02-11-2025_${index}.${ext}`;
+    const ext = isVideo ? "MP4" : "JPG";
+    const fileName = isVideo
+      ? `ABIY_SISAY_02-11-2025_${index}.${ext}`
+      : `Images/ABIY_SISAY_02-11-2025_${index}.${ext}`;
 
     console.log("Loading file:", fileName);
 
@@ -117,5 +119,3 @@
 
 </body>
 </html>
-
-
