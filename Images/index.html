@@ -64,12 +64,10 @@
 
     const isVideo = videoNumbers.includes(index);
     const ext = isVideo ? "MP4" : "jpg";  // lowercase jpg for images
-    
-    // Videos are in root folder, images are in current (Images/) folder
-    const fileName = isVideo
-      ? `../ABIY_SISAY_02-11-2025_${index}.${ext}`  // videos: one level up
-      : `ABIY_SISAY_02-11-2025_${index}.${ext}`;    // images: same folder
-    
+
+    // Both images and videos are in the same folder
+    const fileName = `ABIY_SISAY_02-11-2025_${index}.${ext}`;
+
     console.log("Loading file:", fileName);
 
     if (isVideo) {
@@ -118,10 +116,6 @@
 
   loadMedia(current);
 </script>
-
-</body>
-</html>
-
 
 </body>
 </html>
