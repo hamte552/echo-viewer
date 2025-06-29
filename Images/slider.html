@@ -64,8 +64,9 @@
 
     const isVideo = videoNumbers.includes(index);
     const ext = isVideo ? "MP4" : "JPG";
-    // Make sure to prepend "./" if your files are in the same folder
-    const fileName = `./ABIY_SISAY_02-11-2025_${index}.${ext}`;
+    const fileName = `ABIY_SISAY_02-11-2025_${index}.${ext}`;
+
+    console.log("Loading file:", fileName);
 
     if (isVideo) {
       const video = document.createElement("video");
@@ -86,6 +87,11 @@
       const img = document.createElement("img");
       img.src = fileName;
       img.alt = `Image ${index}`;
+
+      img.onerror = () => {
+        console.error("Image failed to load:", fileName);
+      };
+
       container.appendChild(img);
     }
 
@@ -104,10 +110,6 @@
 
   loadMedia(current);
 </script>
-
-</body>
-</html>
-
 
 </body>
 </html>
