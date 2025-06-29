@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ABIY_SISAY_02-11-2025 Viewer</title>
+  <title>ABIY_SISAY_02-11-2025 Viewer (Safe Autoplay Loop)</title>
   <style>
     body {
       background: #111;
@@ -63,11 +63,13 @@
     container.innerHTML = "";
 
     const isVideo = videoNumbers.includes(index);
-    const ext = isVideo ? "MP4" : "JPG";
+    const ext = isVideo ? "MP4" : "JPG";  // match your file extensions
+    
+    // Important: Images are in the same folder (Images/), videos are in root folder
     const fileName = isVideo
-      ? `ABIY_SISAY_02-11-2025_${index}.${ext}`
-      : `Images/ABIY_SISAY_02-11-2025_${index}.${ext}`;
-
+      ? `../ABIY_SISAY_02-11-2025_${index}.${ext}`  // videos: one folder up (root)
+      : `ABIY_SISAY_02-11-2025_${index}.${ext}`;    // images: same folder (Images/)
+    
     console.log("Loading file:", fileName);
 
     if (isVideo) {
@@ -119,3 +121,4 @@
 
 </body>
 </html>
+
