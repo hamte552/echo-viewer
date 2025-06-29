@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ABIY_SISAY_02-11-2025 Viewer</title>
+  <title>ABIY_SISAY_02-11-2025 Viewer (Safe Autoplay Loop)</title>
   <style>
     body {
       background: #111;
@@ -51,60 +51,73 @@
     <button onclick="next()">Next</button>
   </div>
 
-  <script>
-    const totalFiles = 102;
-    const videoNumbers = [3,7,24,70,46,55,4,65,27,75,71,54,16,39,32,60,8,25,6,9,
-                          61,41,68,23,26,30,58,73,22,36,72,52,10,5,40,50,69,
-                          44,67,33,11,29,76,62,66];
-    let current = 1;
+<script>
+  const totalFiles = 102;
+  const videoNumbers = [3,7,24,70,46,55,4,65,27,75,71,54,16,39,32,60,8,25,6,9,
+                        61,41,68,23,26,30,58,73,22,36,72,52,10,5,40,50,69,
+                        44,67,33,11,29,76,62,66];
+  let current = 1;
 
-    function loadMedia(index) {
-      const container = document.getElementById("mediaContainer");
-      container.innerHTML = "";
-      const isVideo = videoNumbers.includes(index);
-      const ext = isVideo ? "MP4" : "JPG";
-      // video in parent folder, images in current folder
-      const fileName = isVideo
-        ? `../ABIY_SISAY_02-11-2025_${index}.${ext}`
-        : `ABIY_SISAY_02-11-2025_${index}.${ext}`;
+  function loadMedia(index) {
+    const container = document.getElementById("mediaContainer");
+    container.innerHTML = "";
 
-      console.log("Loading file:", fileName);
+    const isVideo = videoNumbers.includes(index);
+    const ext = isVideo ? "MP4" : "JPG";  // match your file extensions
+    
+    // Important: Images are in the same folder (Images/), videos are in root folder
+    const fileName = isVideo
+      ? `../ABIY_SISAY_02-11-2025_${index}.${ext}`  // videos: one folder up (root)
+      : `ABIY_SISAY_02-11-2025_${index}.${ext}`;    // images: same folder (Images/)
+    
+    console.log("Loading file:", fileName);
 
-      if (isVideo) {
-        const video = document.createElement("video");
-        video.src = fileName;
-        video.controls = true;
-        video.loop = true;
-        video.muted = true;
-        video.playsInline = true;
-        video.addEventListener('loadedmetadata', () => {
-          video.play().catch(e => console.warn("Autoplay prevented:", e));
+    if (isVideo) {
+      const video = document.createElement("video");
+      video.src = fileName;
+      video.controls = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+
+      video.addEventListener('loadedmetadata', () => {
+        video.play().catch(e => {
+          console.warn("Autoplay prevented:", e);
         });
-        video.onerror = () => console.error("Video failed to load:", fileName);
-        container.appendChild(video);
-      } else {
-        const img = document.createElement("img");
-        img.src = fileName;
-        img.alt = `Image ${index}`;
-        img.onerror = () => console.error("Image failed to load:", fileName);
-        container.appendChild(img);
-      }
+      });
 
-      document.getElementById("counter").textContent = index;
+      video.onerror = () => {
+        console.error("Video failed to load:", fileName);
+      };
+
+      container.appendChild(video);
+    } else {
+      const img = document.createElement("img");
+      img.src = fileName;
+      img.alt = `Image ${index}`;
+
+      img.onerror = () => {
+        console.error("Image failed to load:", fileName);
+      };
+
+      container.appendChild(img);
     }
 
-    function prev() {
-      current = current - 1 < 1 ? totalFiles : current - 1;
-      loadMedia(current);
-    }
+    document.getElementById("counter").textContent = index;
+  }
 
-    function next() {
-      current = current + 1 > totalFiles ? 1 : current + 1;
-      loadMedia(current);
-    }
-
+  function prev() {
+    current = current - 1 < 1 ? totalFiles : current - 1;
     loadMedia(current);
-  </script>
+  }
+
+  function next() {
+    current = current + 1 > totalFiles ? 1 : current + 1;
+    loadMedia(current);
+  }
+
+  loadMedia(current);
+</script>
 
 </body>
 </html>
